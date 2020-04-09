@@ -145,7 +145,7 @@ if (Modernizr.webgl) {
     //and add properties to the geojson based on the csv file we've read in
     areas.features.map(function(d, i) {
       if (isNaN(rateById[d.properties.AREACD])) {
-        d.properties.fill = "#d1d1d1";
+        d.properties.fill = dvc.nullcolour;
       } else {
         d.properties.fill = color(rateById[d.properties.AREACD]);
       }
@@ -273,8 +273,9 @@ if (Modernizr.webgl) {
           }).sort(d3.ascending);
           allvalues = allvalues.concat(values[columnDates[column]]);
         }
+        allvalues.sort(d3.ascending);
       }
-      allvalues.sort(d3.ascending);
+
 
       if (config.ons.breaks == "jenks") {
         breaks = [];
@@ -344,7 +345,7 @@ if (Modernizr.webgl) {
             type: 'identity',
             property: 'fill'
           },
-          'fill-opacity': 0.7,
+          'fill-opacity': 0.85,
           'fill-outline-color': '#fff'
         }
       }, 'place_city');
@@ -436,7 +437,7 @@ if (Modernizr.webgl) {
       //update properties to the geojson based on the csv file we've read in
       areas.features.map(function(d, i) {
         if (isNaN(rateById[d.properties.AREACD])) {
-          d.properties.fill = "#d1d1d1";
+          d.properties.fill = dvc.nullcolour;
         } else {
           d.properties.fill = color(rateById[d.properties.AREACD]);
         }
@@ -667,7 +668,7 @@ if (Modernizr.webgl) {
     }
 
     function selectArea(code) {
-      $("#areaselect").val(code).trigger('change.select2');
+      $("#areaselect").val(code).trigger("chosen:updated");
     }
 
     $('#areaselect').on('select2:unselect', function() {
@@ -736,7 +737,7 @@ if (Modernizr.webgl) {
             }
           })
           .attr("x2", x(dates[a]))
-          .attr("x1", x(0));
+          .attr("x1", x(dates[0]));
 
         d3.select("#currVal")
           .text(function() {
@@ -749,7 +750,7 @@ if (Modernizr.webgl) {
           .style("opacity", 1)
           .transition()
           .duration(300)
-          .attr("x", x(dvc.timepoints[a]))
+          .attr("x", x(dates[a]))
           .attr("y", function() {
             if (!isNaN(rateById[code])) {
               return y(rateById[code]) - 20;
@@ -769,7 +770,13 @@ if (Modernizr.webgl) {
           .style("opacity", 1)
           .transition()
           .duration(300)
-          .attr("x", x(dates[a]))
+          .attr("x", function(){
+            if (!isNaN(rateById[code])) {
+              return x(dates[Math.round(dates.length/2)]);
+            } else {
+              return x(dates[a]);
+            }
+          })
           .attr("y", function() {
             if (!isNaN(rateById[code])) {
               return y(rateById[code]) - 20;

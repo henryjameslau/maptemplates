@@ -2,24 +2,30 @@
   "ons": {
     "maptitle": "Time series map about life expectancy",
     "varcolour": [
-      [ "#01665e", "#35978f", "#80cdc1", "#c7eae5", "#8c510a" ],
-      [ "#01665e", "#35978f", "#80cdc1", "#c7eae5", "#8c510a" ],
-      [ "#01665e", "#35978f", "#80cdc1", "#c7eae5", "#8c510a" ],
+      [ "#003548", "#296378", "#5894ab", "#8dc8df", "#ce3733" ],
+      [ "#003548", "#296378", "#5894ab", "#cda389", "#ce3733" ],
+      [ "#003548", "#296378", "#5894ab", "#cda389", "#ce3733" ],
 
-      [ "#01665e", "#35978f", "#80cdc1", "#c7eae5", "#8c510a" ],
+      [ "#003548", "#296378", "#5894ab", "#8dc8df", "#ce3733" ],
 
-      [ "#01665e", "#35978f", "#80cdc1", "#c7eae5", "#8c510a" ],
-      ["#8c510a", "#c7eae5", "#80cdc1", "#35978f", "#01665e"]
+      [ "#003548", "#296378", "#5894ab", "#8dc8df", "#ce3733" ],
+      [ "#ce3733", "#8dc8df", "#5894ab", "#296378", "#003548" ]
 
 
     ],
-    "varlabels": ["First var", "Second var", "Next One", "Last One"],
     "timeload": "last",
-    "timepoints": ["2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011"],
     "varunit": ["compared to baseline", "compared to baseline", "compared to baseline", "compared to baseline", "compared to baseline", "compared to baseline"],
     "displaydecimals": 1,
     "legenddecimals": 0,
-    "breaks": "equal",
+    "breaks": [
+      [-100,-59,-30,-15,0,36],
+      [-56,-33,-13,0,15,47],
+      [-79,-35,-9,0,33,111],
+      [-90,-58,-36,-14,0,38],
+      [-80,-58,-40,-22,0,9],
+      [-2,0,7,14,22,35]
+    ],
+    "nullcolour":"#6D6E72",
     "dropticks": true,
     "numberBreaks": 5,
     "sourcetext": "Office for National Statistics",
